@@ -1,0 +1,42 @@
+name: CI and Security Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-test-secure:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+
+    # 1. Spin up the exact Docker environment from your docker-compose.yml
+    - name: Build and Start Container
+      run: docker compose up -d --build
+
+    # 2. Install the security tools INSIDE the running container
+    - name: Install DevSecOps Tools in Container
+      run: docker compose exec -T api pip install flake8 bandit pip-audit
+
+    # 3. Static Analysis (Flake8)
+    - name: Run Linter
+      run: docker compose exec -T api flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+    # 4. Dependency Scanning (pip-audit) - THIS WILL FAIL AFTER YOUR SABOTAGE
+    - name: Scan Dependencies
+      run: docker compose exec -T api pip-audit
+
+    # 5. Static App Security Testing (Bandit) - THIS WILL ALSO FAIL
+    - name: Scan Source Code
+      run: docker compose exec -T api bandit -r . -f custom
+
+    # 6. Unit Testing (Pytest) - THIS WOULD PASS, PROVING TESTS DON'T CATCH SECURITY FLAWS
+    - name: Run Unit Tests
+      run: docker compose exec -T api pytest
+      
+    # 7. Clean up the environment
+    - name: Stop Containers
+      if: always()
+      run: docker compose down

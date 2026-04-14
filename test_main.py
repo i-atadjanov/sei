@@ -6,9 +6,9 @@ client = TestClient(app)
 
 def test_calculate_discount():
     # content to test
-    payload = {"price": 200.0, "discount_percent" : 20.0}
+    payload = {"price": 200.0, "discount_percent": 20.0}
 
-    #call to get final discounted price
+    # call to get final discounted price
     response = client.post('/calculate_discount', json=payload)
 
     # Assert: Check the result
