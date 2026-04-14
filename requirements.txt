@@ -2,7 +2,4 @@ fastapi
 uvicorn
 pytest
 httpx
-flake8
-bandit
-pip-audit
 urllib3==1.26.4
