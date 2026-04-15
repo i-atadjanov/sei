@@ -1,5 +1,5 @@
 # 1. Python language
-FROM python:3.9-slim
+FROM python:3.10-slim
 
 RUN python -m pip install --upgrade pip
 # 2. setting the working directory inside the container
