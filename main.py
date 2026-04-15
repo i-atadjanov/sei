@@ -18,7 +18,7 @@ def calculate_discount(request: DiscountRequest):
 
 
 def bad_style():
-    x=1
+    x = 1
     return x
 
 

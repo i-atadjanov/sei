@@ -3,6 +3,7 @@ from main import app
 
 client = TestClient(app)
 
+
 def test_calculate_discount():
     # content to test
     payload = {"price": 200.0, "discount_percent": 20.0}
