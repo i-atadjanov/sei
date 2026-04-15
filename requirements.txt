@@ -1,7 +1,7 @@
-filelock=3.20.3
+filelock>=3.20.3
+wheel>=0.46.2
+requests>=2.33.0
+pytest>=9.0.3
 fastapi
 uvicorn
-pytest=9.0.3
 httpx
-requests=2.33.0
-wheel=0.46.2
