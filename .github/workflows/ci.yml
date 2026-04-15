@@ -22,7 +22,7 @@ jobs:
 
     # 3. Static Analysis (Flake8)
     - name: Run Linter
-      run: docker compose exec -T api flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+      run: docker compose exec -T api flake8 . --count --show-source --statistics
 
     # 4. Dependency Scanning (pip-audit) - THIS WILL FAIL AFTER YOUR SABOTAGE
     - name: Scan Dependencies
