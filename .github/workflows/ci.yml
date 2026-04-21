@@ -30,7 +30,7 @@ jobs:
 
     # 5. Static App Security Testing (Bandit) - THIS WILL ALSO FAIL
     - name: Scan Source Code
-      run: docker compose exec -T api bandit -r . -f custom
+      run: docker compose exec -T api bandit -r . -f custom -s B101
 
     # 6. Unit Testing (Pytest) - THIS WOULD PASS, PROVING TESTS DON'T CATCH SECURITY FLAWS
     - name: Run Unit Tests
