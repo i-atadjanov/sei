@@ -25,6 +25,6 @@ def bad_style():
 @app.get("/login")
 def login():
     # Bandit will catch this weak MD5 hashing algorithm
-    m = hashlib.md5()
+    m = hashlib.md5(usedforsecurity=False)
     m.update(b"super_secret_password")
     return {"token": m.hexdigest()}
